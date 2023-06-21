@@ -1,6 +1,26 @@
-import { useState, useEffect } from "react";
+//import { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
+
+  return (
+    <div className="container">
+      <div className = "title">Digit Recognition</div>
+      <div className = "sub-title">Draw · Submit · Predict</div>
+
+      <div className = "box-container">
+        <div className = "draw-box">Draw Here</div>
+        <div className = "space"></div>
+        <div className = "draw-box">Predictions Here</div>
+      </div>
+    </div>
+  );
+
+}
+
+export default App;
+  
+/*
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -21,7 +41,4 @@ function App() {
       <h1>{message}</h1>
     </div>
   );
-}
-
-export default App;
-  
+  */
