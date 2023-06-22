@@ -5,6 +5,10 @@ body {
   font-family: "Nunito";
 }
 
+.canvas {
+  border: 3px solid black;
+}
+
 .container {
   margin: 0 auto;
   text-align: center;
@@ -48,9 +52,9 @@ body {
   margin-top: 1em;
   width: 15em;
   height:2.5em;
-  color: rgb(39, 153, 39);
-  
-  border: 3px solid rgb(39, 153, 39);
+  color: rgb(50, 194, 50);
+  text-align: center;
+  border: 3px solid rgb(50, 194, 50);
   cursor: pointer;
   font-size: large;
   font-family: "Nunito";
@@ -61,8 +65,29 @@ body {
 }
 
 .submit:hover {
-  background-color: rgb(39, 153, 39);
-  
+  background-color: rgb(50, 194, 50);
+  color: aliceblue;
+}
+
+.clear {
+  background-color: rgb(63, 64, 84);
+  margin-top: 1em;
+  width: 15em;
+  height:2.5em;
+  color: crimson;
+  text-align: center;
+  border: 3px solid crimson;
+  cursor: pointer;
+  font-size: large;
+  font-family: "Nunito";
+  padding: 2.5%;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all .3s ease;
+}
+
+.clear:hover {
+  background-color: crimson;
   color: aliceblue;
 }
 
@@ -70,4 +95,10 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.buttons {
+  display: grid;
+  justify-content: center;
+  margin: 0;
 }

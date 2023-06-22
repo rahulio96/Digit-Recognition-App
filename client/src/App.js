@@ -11,10 +11,13 @@ function App() {
       <div className="content">
         
         <div className= "sub-container">
-          <div className = "draw-box">Draw Here</div>
-          <div>
+          <canvas className="canvas" id="myCanvas" width="300" height="300"></canvas>
+
+          <div className="buttons">
             <button className="submit">SUBMIT</button>
+            <button className="clear">CLEAR</button>
           </div>
+
         </div>  
           
         <div className= "sub-container">
