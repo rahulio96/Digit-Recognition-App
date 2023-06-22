@@ -8,11 +8,21 @@ function App() {
       <div className = "title">Digit Recognition</div>
       <div className = "sub-title">Draw · Submit · Predict</div>
 
-      <div className = "box-container">
-        <div className = "draw-box">Draw Here</div>
-        <div className = "space"></div>
-        <div className = "draw-box">Predictions Here</div>
+      <div className="content">
+        
+        <div className= "sub-container">
+          <div className = "draw-box">Draw Here</div>
+          <div>
+            <button className="submit">SUBMIT</button>
+          </div>
+        </div>  
+          
+        <div className= "sub-container">
+          <div className = "draw-box">Predictions Here</div>
+        </div>
+
       </div>
+      
     </div>
   );
 

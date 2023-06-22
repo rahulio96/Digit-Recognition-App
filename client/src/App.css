@@ -14,21 +14,22 @@ body {
   font-size: 4em;
   color: aliceblue;
   font-weight: bold;
+  margin-top: 4vw;
 }
 
 .sub-title {
   font-size: 30px;
   color: blueviolet;
   margin-bottom: 20px;
+  font-weight: 550;
 }
 
-.box-container {
-  margin: auto; 
-  
+.sub-container {
+  display: inline-block;
+  margin: 5em;
 }
 
 .draw-box {
-  display: inline-block;
   width: 300px;
   height: 300px;
   background-color: black;
@@ -39,5 +40,34 @@ body {
 
 .space {
   display: inline-block;
-  margin: 4em;
+  margin: 5em;
+}
+
+.submit {
+  background-color: rgb(63, 64, 84);
+  margin-top: 1em;
+  width: 15em;
+  height:2.5em;
+  color: rgb(39, 153, 39);
+  
+  border: 3px solid rgb(39, 153, 39);
+  cursor: pointer;
+  font-size: large;
+  font-family: "Nunito";
+  padding: 2.5%;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all .3s ease;
+}
+
+.submit:hover {
+  background-color: rgb(39, 153, 39);
+  
+  color: aliceblue;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
