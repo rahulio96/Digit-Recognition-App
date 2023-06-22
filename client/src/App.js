@@ -1,6 +1,39 @@
-import { useState, useEffect } from "react";
+//import { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
+
+  return (
+    <div className="container">
+      <div className = "title">Digit Recognition</div>
+      <div className = "sub-title">Draw · Submit · Predict</div>
+
+      <div className="content">
+        
+        <div className= "sub-container">
+          <canvas className="canvas" id="myCanvas" width="300" height="300"></canvas>
+
+          <div className="buttons">
+            <button className="submit">SUBMIT</button>
+            <button className="clear">CLEAR</button>
+          </div>
+
+        </div>  
+          
+        <div className= "sub-container">
+          <div className = "draw-box">Predictions Here</div>
+        </div>
+
+      </div>
+      
+    </div>
+  );
+
+}
+
+export default App;
+  
+/*
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -21,7 +54,4 @@ function App() {
       <h1>{message}</h1>
     </div>
   );
-}
-
-export default App;
-  
+  */

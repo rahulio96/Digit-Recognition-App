@@ -1,38 +1,104 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+body {
+  background-color: rgb(63, 64, 84);
+  font-family: "Nunito";
+}
+
+.canvas {
+  border: 3px solid black;
+}
+
+.container {
+  margin: 0 auto;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+  font-size: 4em;
+  color: aliceblue;
+  font-weight: bold;
+  margin-top: 4vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.sub-title {
+  font-size: 30px;
+  color: blueviolet;
+  margin-bottom: 20px;
+  font-weight: 550;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sub-container {
+  display: inline-block;
+  margin: 5em;
+}
+
+.draw-box {
+  width: 300px;
+  height: 300px;
+  background-color: black;
+  color: aliceblue;
+  text-align: center;
+  margin: auto; 
+}
+
+.space {
+  display: inline-block;
+  margin: 5em;
+}
+
+.submit {
+  background-color: rgb(63, 64, 84);
+  margin-top: 1em;
+  width: 15em;
+  height:2.5em;
+  color: rgb(50, 194, 50);
+  text-align: center;
+  border: 3px solid rgb(50, 194, 50);
+  cursor: pointer;
+  font-size: large;
+  font-family: "Nunito";
+  padding: 2.5%;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all .3s ease;
+}
+
+.submit:hover {
+  background-color: rgb(50, 194, 50);
+  color: aliceblue;
+}
+
+.clear {
+  background-color: rgb(63, 64, 84);
+  margin-top: 1em;
+  width: 15em;
+  height:2.5em;
+  color: crimson;
+  text-align: center;
+  border: 3px solid crimson;
+  cursor: pointer;
+  font-size: large;
+  font-family: "Nunito";
+  padding: 2.5%;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all .3s ease;
+}
+
+.clear:hover {
+  background-color: crimson;
+  color: aliceblue;
+}
+
+.content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.buttons {
+  display: grid;
+  justify-content: center;
+  margin: 0;
 }
