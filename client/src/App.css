@@ -48,10 +48,11 @@ body {
 }
 
 .submit {
+  position: relative;
   background-color: rgb(63, 64, 84);
   margin-top: 1em;
   width: 15em;
-  height:2.5em;
+  height: 2.5em;
   color: rgb(50, 194, 50);
   text-align: center;
   border: 3px solid rgb(50, 194, 50);
@@ -62,6 +63,27 @@ body {
   cursor: pointer;
   font-weight: 500;
   transition: all .3s ease;
+  overflow: hidden;
+}
+
+.submit:after {
+  content: "";
+  background: rgb(63, 64, 84);
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s;
+}
+
+.submit:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
 }
 
 .submit:hover {
@@ -70,10 +92,11 @@ body {
 }
 
 .clear {
+  position: relative;
   background-color: rgb(63, 64, 84);
   margin-top: 1em;
   width: 15em;
-  height:2.5em;
+  height: 2.5em;
   color: crimson;
   text-align: center;
   border: 3px solid crimson;
@@ -84,6 +107,27 @@ body {
   cursor: pointer;
   font-weight: 500;
   transition: all .3s ease;
+  overflow: hidden;
+}
+
+.clear:after {
+  content: "";
+  background: rgb(63, 64, 84);
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s;
+}
+
+.clear:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
 }
 
 .clear:hover {
