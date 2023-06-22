@@ -13,12 +13,6 @@ function App() {
         
         <div className= "sub-container"> Draw Here (28x28 Image)
           <DrawingCanvas/>
-
-          <div className="buttons">
-            <button className="submit">SUBMIT</button>
-            <button className="clear">CLEAR</button>
-          </div>
-
         </div>  
           
         <div className= "sub-container">

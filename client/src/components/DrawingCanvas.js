@@ -1,4 +1,5 @@
 import "./DrawingCanvas.css";
+import "../App.css";
 import { useRef, useEffect, useState } from "react";
 
 const DrawingCanvas = () => {
@@ -47,6 +48,12 @@ const DrawingCanvas = () => {
     setIsDrawing(false);
   };
 
+  const clear = () => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    context.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
   return (
     <div className="canvas-container">
       <canvas
@@ -56,9 +63,15 @@ const DrawingCanvas = () => {
         onMouseDown={startDrawing}
         onMouseMove={draw}
         onMouseUp={stopDrawing}
-        onMouseLeave={stopDrawing}
+        onMouseLeave={stopDrawing}>
 
-      ></canvas>
+        </canvas>
+
+    <div className="buttons">
+        <button className="submit">SUBMIT</button>
+        <button className="clear" onClick={clear}>CLEAR</button>
+    </div>
+
     </div>
   );
 };
