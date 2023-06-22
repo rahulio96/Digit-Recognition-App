@@ -11,7 +11,7 @@ function App() {
 
       <div className="content">
         
-        <div className= "sub-container">
+        <div className= "sub-container"> Draw Here (28x28 Image)
           <DrawingCanvas/>
 
           <div className="buttons">
@@ -22,7 +22,8 @@ function App() {
         </div>  
           
         <div className= "sub-container">
-          <div className = "draw-box">Predictions Here</div>
+          Neural Network Predictions
+          <div className = "predict-box"></div>
         </div>
 
       </div>
