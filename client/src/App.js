@@ -1,5 +1,6 @@
 //import { useState, useEffect } from "react";
 import "./App.css";
+import DrawingCanvas from "./components/DrawingCanvas";
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
       <div className="content">
         
         <div className= "sub-container">
-          <canvas className="canvas" id="myCanvas" width="300" height="300"></canvas>
+          <DrawingCanvas/>
 
           <div className="buttons">
             <button className="submit">SUBMIT</button>
