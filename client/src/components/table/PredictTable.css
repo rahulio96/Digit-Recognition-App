@@ -1,0 +1,31 @@
+.predict-box {
+    width: 300px;
+    height: 23.6em;
+    border: 1px solid aliceblue;
+    color: aliceblue;
+    /*text-align: center;*/
+    margin: auto;
+    margin-top: 1em; 
+}
+
+td {
+    border: 1px solid aliceblue;
+    padding: 0.328em;
+}
+
+.header {
+    background-color: aliceblue;
+    color: rgb(63, 64, 84);
+    font-weight: bolder;
+}
+
+/*
+.row {
+    transition: all .3s ease;
+}
+
+
+.row:hover {
+    background-color: rgb(115, 118, 155);    
+}
+*/

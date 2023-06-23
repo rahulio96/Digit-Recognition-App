@@ -1,5 +1,5 @@
 import "./DrawingCanvas.css";
-import "../App.css";
+import "../../App.css";
 import { useRef, useEffect, useState } from "react";
 
 const DrawingCanvas = () => {
@@ -13,10 +13,11 @@ const DrawingCanvas = () => {
 
     context.lineCap = "round";
     context.strokeStyle = "white";
-    context.lineWidth = 2;
+    context.lineWidth = 0.5;
     contextRef.current = context;
   }, []);
 
+  // Start Drawing
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
 
@@ -29,6 +30,7 @@ const DrawingCanvas = () => {
     nativeEvent.preventDefault();
   };
 
+  // Draw
   const draw = ({ nativeEvent }) => {
     if (!isDrawing) {
       return;
@@ -43,11 +45,13 @@ const DrawingCanvas = () => {
     nativeEvent.preventDefault();
   };
 
+  // Stop drawing
   const stopDrawing = () => {
     contextRef.current.closePath();
     setIsDrawing(false);
   };
 
+  // Clear the canvas
   const clear = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");

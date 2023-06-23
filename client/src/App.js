@@ -1,6 +1,7 @@
 //import { useState, useEffect } from "react";
 import "./App.css";
-import DrawingCanvas from "./components/DrawingCanvas";
+import DrawingCanvas from "./components/canvas/DrawingCanvas";
+import Table from "./components/table/PredictTable";
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
           
         <div className= "sub-container">
           Neural Network Predictions
-          <div className = "predict-box"></div>
+          <Table/>
         </div>
 
       </div>
