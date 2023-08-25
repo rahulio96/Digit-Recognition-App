@@ -15,6 +15,9 @@ const DrawingCanvas = () => {
     context.strokeStyle = "white";
     context.lineWidth = 0.5;
     contextRef.current = context;
+
+    context.fillStyle = "black"; // Set canvas background color
+    context.fillRect(0, 0, canvas.width, canvas.height); // Draw background
   }, []);
 
   // Start Drawing
@@ -56,10 +59,28 @@ const DrawingCanvas = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
-  }
+    context.fillStyle = "black"; // Set canvas background color
+    context.fillRect(0, 0, canvas.width, canvas.height); // Draw background
+  };
+
+  const handleSubmit = () => {
+    const canvas = canvasRef.current;
+    const dataURL = canvas.toDataURL("image/png");
+
+
+    fetch("http://localhost:5000/api/receive", {
+      method: "POST",
+      body: JSON.stringify({image: dataURL}),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+
+  };
+
 
   return (
-    <div className="canvas-container">
+    <div className="canvas-container" id="canvas-image">
       <canvas
         ref={canvasRef}
         width={28}
@@ -72,7 +93,7 @@ const DrawingCanvas = () => {
         </canvas>
 
     <div className="buttons">
-        <button className="submit">SUBMIT</button>
+        <button className="submit" onClick={handleSubmit}>SUBMIT</button>
         <button className="clear" onClick={clear}>CLEAR</button>
     </div>
 
