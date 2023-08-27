@@ -9,8 +9,8 @@ const Table = () => {
         <table className="predict-box">
             <thead>
                 <tr>
-                <th className="header">Digit</th>
-                <th className="header">Probability</th>
+                <th className="header">Predicted Digit</th>
+                
                 </tr>
             </thead>
             <tbody>
@@ -18,7 +18,7 @@ const Table = () => {
             {[...Array(10)].map((_, index) => (
                 <tr key={index}>
                     <td>{index}</td>
-                    <td>0%</td>
+                    
                 </tr>
             ))}
             </tbody>

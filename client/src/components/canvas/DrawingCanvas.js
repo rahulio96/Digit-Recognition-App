@@ -15,6 +15,9 @@ const DrawingCanvas = () => {
     context.strokeStyle = "white";
     context.lineWidth = 0.5;
     contextRef.current = context;
+
+    context.fillStyle = "black"; // Set canvas background color
+    context.fillRect(0, 0, canvas.width, canvas.height); // Draw background
   }, []);
 
   // Start Drawing
@@ -56,10 +59,33 @@ const DrawingCanvas = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     context.clearRect(0, 0, canvas.width, canvas.height);
-  }
+    context.fillStyle = "black"; // Set canvas background color
+    context.fillRect(0, 0, canvas.width, canvas.height); // Draw background
+  };
+
+  const handleSubmit = async () => {
+    const canvas = canvasRef.current;
+    const dataURL = canvas.toDataURL("image/png");
+    console.log(JSON.stringify({image: dataURL}))
+
+
+    const response = await fetch("http://localhost:5000/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "https://localhost:3000",
+      },
+      body: JSON.stringify({image: dataURL}),
+    })
+
+    const responseData = await response.json()
+    console.log(responseData)
+
+
+  };
 
   return (
-    <div className="canvas-container">
+    <div className="canvas-container" id="canvas-image">
       <canvas
         ref={canvasRef}
         width={28}
@@ -72,7 +98,7 @@ const DrawingCanvas = () => {
         </canvas>
 
     <div className="buttons">
-        <button className="submit">SUBMIT</button>
+        <button className="submit" onClick={handleSubmit}>SUBMIT</button>
         <button className="clear" onClick={clear}>CLEAR</button>
     </div>
 
