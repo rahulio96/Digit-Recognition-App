@@ -63,21 +63,26 @@ const DrawingCanvas = () => {
     context.fillRect(0, 0, canvas.width, canvas.height); // Draw background
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const canvas = canvasRef.current;
     const dataURL = canvas.toDataURL("image/png");
+    console.log(JSON.stringify({image: dataURL}))
 
 
-    fetch("http://localhost:5000/api/receive", {
+    const response = await fetch("http://localhost:5000/a", {
       method: "POST",
-      body: JSON.stringify({image: dataURL}),
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "https://localhost:3000",
       },
+      body: JSON.stringify({image: dataURL}),
     })
 
-  };
+    const responseData = await response.json()
+    console.log(responseData)
 
+
+  };
 
   return (
     <div className="canvas-container" id="canvas-image">
