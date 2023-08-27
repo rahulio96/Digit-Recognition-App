@@ -69,7 +69,7 @@ const DrawingCanvas = () => {
     console.log(JSON.stringify({image: dataURL}))
 
 
-    const response = await fetch("http://localhost:5000/a", {
+    const response = await fetch("http://localhost:5000/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

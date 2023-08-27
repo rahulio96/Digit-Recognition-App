@@ -13,11 +13,12 @@ import io
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/a', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def receive_image():
     if (request.method == 'POST'):
         data = request.get_json()
 
+        # Data comes in as a dictionary, so we need to get the data URL from here
         data = data.get('image')
 
         # Decode base64 image data
@@ -32,13 +33,12 @@ def receive_image():
         image_array = np.array(image)
 
         # Flatten the image array to a 1D array
-        flattened_array = image_array.reshape(-1)  # shape: (784,)
+        flattened_array = image_array.reshape(-1)
 
         # Normalize pixel values to [0, 1]
         normalized_array = flattened_array / 255
 
-        #new_img = image_array.reshape((image_array.shape[0]*image_array.shape[1]), 1)
-        arr = normalized_array.reshape(1, -1).T
+        test = normalized_array.reshape(1, -1).T
 
         # Convert the data to numpy arrays
         w1 = np.array(pd.read_csv('./weights-biases/trained_weights/w1.csv'))
@@ -46,20 +46,16 @@ def receive_image():
         b1 = np.array(pd.read_csv('./weights-biases/trained_biases/b1.csv'))
         b2 = np.array(pd.read_csv('./weights-biases/trained_biases/b2.csv'))
 
-        # Test neural network
-        x_test = arr
-
         # Perform forward propagation on the test data
-        weight_sum1, weight_sum2, active_output1, active_output2 = forward_propagation(w1, w2, b1, b2, x_test)
+        weight_sum1, weight_sum2, active_output1, active_output2 = forward_propagation(w1, w2, b1, b2, test)
 
         # Make predictions
-        predictions = np.argmax(active_output2)  # Get the index of the maximum probability for each test sample
+        prediction = np.argmax(active_output2)  # Get the index of the maximum probability for each test sample
 
-        # Print the predictions
-        print( np.argmax(active_output2, axis=0) )
-        return jsonify({'message': str(predictions)})
+        # Send the predicted digit to react
+        return jsonify({'message': str(prediction)})
 
-    return jsonify({'message': 'POST request not given'})
+    return jsonify({'message': 'Default message'})
     
 if __name__ == "__main__":
     app.run(host="localhost", debug=True)
