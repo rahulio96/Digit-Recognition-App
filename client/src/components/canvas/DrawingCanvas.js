@@ -2,7 +2,7 @@ import "./DrawingCanvas.css";
 import "../../App.css";
 import { useRef, useEffect, useState } from "react";
 
-const DrawingCanvas = () => {
+const DrawingCanvas = ({updatePrediction}) => {
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -61,14 +61,15 @@ const DrawingCanvas = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = "black"; // Set canvas background color
     context.fillRect(0, 0, canvas.width, canvas.height); // Draw background
+    // Set prediction at -1 when cleared
+    updatePrediction(-1)
   };
 
   const handleSubmit = async () => {
     const canvas = canvasRef.current;
     const dataURL = canvas.toDataURL("image/png");
-    console.log(JSON.stringify({image: dataURL}))
 
-
+    // Send the image to Flask
     const response = await fetch("http://localhost:5000/", {
       method: "POST",
       headers: {
@@ -78,9 +79,9 @@ const DrawingCanvas = () => {
       body: JSON.stringify({image: dataURL}),
     })
 
+    // Get the prediction from image from Flask
     const responseData = await response.json()
-    console.log(responseData)
-
+    updatePrediction(parseInt(responseData))
 
   };
 
