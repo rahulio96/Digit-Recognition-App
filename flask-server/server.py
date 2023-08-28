@@ -53,7 +53,7 @@ def receive_image():
         prediction = np.argmax(active_output2)  # Get the index of the maximum probability for each test sample
 
         # Send the predicted digit to react
-        return jsonify({'message': str(prediction)})
+        return jsonify(str(prediction))
 
     return jsonify({'message': 'Default message'})
     

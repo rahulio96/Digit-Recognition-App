@@ -3,7 +3,6 @@
     height: 23.6em;
     border: 1px solid aliceblue;
     color: aliceblue;
-    /*text-align: center;*/
     margin: auto;
     margin-top: 1em; 
 }
@@ -19,13 +18,10 @@ td {
     font-weight: bolder;
 }
 
-/*
-.row {
-    transition: all .3s ease;
+.selected {
+    transition: all .2s ease;
+    background-color: blueviolet;
+    border-color: black;
+    color: black;
+    font-weight: 20000;
 }
-
-
-.row:hover {
-    background-color: rgb(115, 118, 155);    
-}
-*/

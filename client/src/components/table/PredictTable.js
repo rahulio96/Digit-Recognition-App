@@ -1,11 +1,8 @@
-//import { useState } from "react";
 import "./PredictTable.css";
 
-const Table = () => {
-    //const [tableData, setTableData] = useState(Array(10).fill(""));
+const Table = ({prediction}) => {
 
     return (
-
         <table className="predict-box">
             <thead>
                 <tr>
@@ -17,14 +14,15 @@ const Table = () => {
 
             {[...Array(10)].map((_, index) => (
                 <tr key={index}>
+                    {prediction === index? (
+                    <td className="selected">{index}</td>
+                    ):
                     <td>{index}</td>
-                    
+                    }
                 </tr>
             ))}
             </tbody>
         </table>
-        
-        
     );
 };
 
