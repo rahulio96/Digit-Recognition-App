@@ -3,6 +3,9 @@ import "../../App.css";
 import { useRef, useEffect, useState } from "react";
 
 const DrawingCanvas = ({updatePrediction}) => {
+  const width = 300;
+  const height = 300;
+
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -13,7 +16,7 @@ const DrawingCanvas = ({updatePrediction}) => {
 
     context.lineCap = "round";
     context.strokeStyle = "white";
-    context.lineWidth = 0.5;
+    context.lineWidth = 20;
     contextRef.current = context;
 
     context.fillStyle = "black"; // Set canvas background color
@@ -24,8 +27,8 @@ const DrawingCanvas = ({updatePrediction}) => {
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
 
-    const scaledOffsetX = (offsetX / canvasRef.current.clientWidth) * 28;
-    const scaledOffsetY = (offsetY / canvasRef.current.clientHeight) * 28;
+    const scaledOffsetX = (offsetX / canvasRef.current.clientWidth) * width;
+    const scaledOffsetY = (offsetY / canvasRef.current.clientHeight) * height;
 
     contextRef.current.beginPath();
     contextRef.current.moveTo(scaledOffsetX, scaledOffsetY);
@@ -40,8 +43,8 @@ const DrawingCanvas = ({updatePrediction}) => {
     }
     const { offsetX, offsetY } = nativeEvent;
 
-    const scaledOffsetX = (offsetX / canvasRef.current.clientWidth) * 28;
-    const scaledOffsetY = (offsetY / canvasRef.current.clientHeight) * 28;
+    const scaledOffsetX = (offsetX / canvasRef.current.clientWidth) * width;
+    const scaledOffsetY = (offsetY / canvasRef.current.clientHeight) * height;
 
     contextRef.current.lineTo(scaledOffsetX, scaledOffsetY);
     contextRef.current.stroke();
@@ -89,8 +92,8 @@ const DrawingCanvas = ({updatePrediction}) => {
     <div className="canvas-container" id="canvas-image">
       <canvas
         ref={canvasRef}
-        width={28}
-        height={28}
+        width={width}
+        height={height}
         onMouseDown={startDrawing}
         onMouseMove={draw}
         onMouseUp={stopDrawing}
