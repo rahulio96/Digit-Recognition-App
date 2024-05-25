@@ -4,55 +4,68 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from functions import *
-import numpy as np
-import pandas as pd
 from PIL import Image
 import base64
 import io
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torchvision.transforms as transforms
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/', methods=['GET', 'POST'])
+
+class MNIST_Neural_Network(nn.Module):
+    def __init__(self, in_layer=784, hid_layer1=800, hid_layer2=130, hid_layer3=80, out_layer=10):
+        super().__init__()
+        self.w1 = nn.Linear(in_layer, hid_layer1)
+        self.w2 = nn.Linear(hid_layer1, hid_layer2)
+        self.w3 = nn.Linear(hid_layer2, hid_layer3)
+        self.out = nn.Linear(hid_layer3, out_layer)
+        self.dropout = nn.Dropout(p=0.5)
+        
+    def forward(self, x):
+        x = F.relu(self.w1(x))
+        x = F.relu(self.w2(x))
+        x = F.relu(self.w3(x))
+        x = self.dropout(x)
+        x = self.out(x)
+
+        return x
+    
+mnist_model = MNIST_Neural_Network()
+
+mnist_model.load_state_dict(torch.load('./mnist_model.pth'))
+mnist_model.eval()
+
+@app.route('/', methods=['POST'])
 def receive_image():
     if (request.method == 'POST'):
         data = request.get_json()
 
-        # Data comes in as a dictionary, so we need to get the data URL from here
         data = data.get('image')
 
         # Decode base64 image data
         image_data = base64.b64decode(data.split(',')[1])
         
-        image = Image.open(io.BytesIO(image_data))
+        img = Image.open(io.BytesIO(image_data))
 
-        # Greyscale image
-        image = image.convert("L")
+        transform = transforms.Compose([
+            transforms.Resize((28, 28)),
+            transforms.Grayscale(num_output_channels=1),
+            transforms.PILToTensor(),
+        ])
 
-        # Convert the image to a NumPy array
-        image_array = np.array(image)
+        img_tensor = transform(img).view(1, 28*28).float()
 
-        # Flatten the image array to a 1D array
-        flattened_array = image_array.reshape(-1)
+        img_tensor = F.normalize(img_tensor)
 
-        # Normalize pixel values to [0, 1]
-        normalized_array = flattened_array / 255
+        with torch.no_grad():
+            output = mnist_model(img_tensor)
+            prediction = torch.argmax(output).item()
 
-        test = normalized_array.reshape(1, -1).T
 
-        # Convert the data to numpy arrays
-        w1 = np.array(pd.read_csv('./weights-biases/trained_weights/w1.csv'))
-        w2 = np.array(pd.read_csv('./weights-biases/trained_weights/w2.csv'))
-        b1 = np.array(pd.read_csv('./weights-biases/trained_biases/b1.csv'))
-        b2 = np.array(pd.read_csv('./weights-biases/trained_biases/b2.csv'))
-
-        # Perform forward propagation on the test data
-        weight_sum1, weight_sum2, active_output1, active_output2 = forward_propagation(w1, w2, b1, b2, test)
-
-        # Make predictions
-        prediction = np.argmax(active_output2)  # Get the index of the maximum probability for each test sample
-
-        # Send the predicted digit to react
         return jsonify(str(prediction))
 
     return jsonify({'message': 'Default message'})
