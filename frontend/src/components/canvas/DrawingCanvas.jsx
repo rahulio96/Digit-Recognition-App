@@ -1,4 +1,4 @@
-import "./DrawingCanvas.css";
+import canvasCSS from "./DrawingCanvas.module.css";
 import "../../App.css";
 import { useRef, useEffect, useState } from "react";
 
@@ -89,7 +89,7 @@ const DrawingCanvas = ({updatePrediction}) => {
   };
 
   return (
-    <div className="canvas-container" id="canvas-image">
+    <div className={canvasCSS.container} id="canvas-image">
       <canvas
         ref={canvasRef}
         width={width}

@@ -1,12 +1,12 @@
-import "./PredictTable.css";
+import predictTableCSS from "./PredictTable.module.css";
 
 const Table = ({prediction}) => {
 
     return (
-        <table className="predict-box">
+        <table className={predictTableCSS.container}>
             <thead>
                 <tr>
-                <th className="header">Predicted Digit</th>
+                <th className={predictTableCSS.header}>Predicted Digit</th>
                 
                 </tr>
             </thead>
@@ -15,7 +15,7 @@ const Table = ({prediction}) => {
             {[...Array(10)].map((_, index) => (
                 <tr key={index}>
                     {prediction === index? (
-                    <td className="selected">{index}</td>
+                    <td className={predictTableCSS.selected}>{index}</td>
                     ):
                     <td>{index}</td>
                     }
