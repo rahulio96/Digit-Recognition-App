@@ -3,7 +3,6 @@
 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from functions import *
 from PIL import Image
 import base64
 import io
