@@ -14,14 +14,14 @@ td {
 
 .header {
     background-color: aliceblue;
-    color: rgb(63, 64, 84);
+    color: #1f232c;
     font-weight: bolder;
 }
 
 .selected {
     transition: all .2s ease;
-    background-color: rgb(50, 194, 50);
-    border-color: rgb(50, 194, 50);
-    color: rgb(63, 64, 84);
-    font-size: larger;
+    background-color: #F9C80E;
+    border-color: #F9C80E;
+    color: #1f232c;
+    font-size: 2rem;
 }

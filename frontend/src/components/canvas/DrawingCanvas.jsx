@@ -9,6 +9,7 @@ const DrawingCanvas = ({updatePrediction}) => {
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [lastPos, setLastPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -30,6 +31,8 @@ const DrawingCanvas = ({updatePrediction}) => {
     const scaledOffsetX = (offsetX / canvasRef.current.clientWidth) * width;
     const scaledOffsetY = (offsetY / canvasRef.current.clientHeight) * height;
 
+    setLastPos({ x: scaledOffsetX, y: scaledOffsetY });
+
     contextRef.current.beginPath();
     contextRef.current.moveTo(scaledOffsetX, scaledOffsetY);
     setIsDrawing(true);
@@ -46,8 +49,14 @@ const DrawingCanvas = ({updatePrediction}) => {
     const scaledOffsetX = (offsetX / canvasRef.current.clientWidth) * width;
     const scaledOffsetY = (offsetY / canvasRef.current.clientHeight) * height;
 
+    // Draw line from last position to current position
+    contextRef.current.beginPath();
+    contextRef.current.moveTo(lastPos.x, lastPos.y);
     contextRef.current.lineTo(scaledOffsetX, scaledOffsetY);
     contextRef.current.stroke();
+
+    setLastPos({ x: scaledOffsetX, y: scaledOffsetY });
+
     nativeEvent.preventDefault();
   };
 
@@ -64,6 +73,7 @@ const DrawingCanvas = ({updatePrediction}) => {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = "black"; // Set canvas background color
     context.fillRect(0, 0, canvas.width, canvas.height); // Draw background
+
     // Set prediction at -1 when cleared
     updatePrediction(-1)
   };

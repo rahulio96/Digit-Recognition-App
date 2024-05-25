@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
 body {
-  background-color: rgb(63, 64, 84);
+  background-color: #1f232c;
   font-family: "Nunito";
 }
 
@@ -17,15 +17,13 @@ body {
 .title {
   font-size: 4em;
   color: aliceblue;
-  font-weight: bold;
   margin-top: 4vw;
 }
 
 .sub-title {
   font-size: 30px;
-  color: blueviolet;
+  color: #F9C80E;
   margin-bottom: 20px;
-  font-weight: 550;
 }
 
 .sub-container {
@@ -42,7 +40,7 @@ body {
 
 .submit {
   position: relative;
-  background-color: rgb(63, 64, 84);
+  background-color: transparent;
   margin-top: 1em;
   width: 15em;
   height: 2.5em;
@@ -61,7 +59,7 @@ body {
 
 .submit:after {
   content: "";
-  background: rgb(63, 64, 84);
+  background: #1f232c;
   display: block;
   position: absolute;
   padding-top: 300%;
@@ -80,17 +78,17 @@ body {
 }
 
 .submit:hover {
-  background-color: rgb(50, 194, 50);
-  color: aliceblue;
+  background-color: #32c232;
+  color: #f0f8ff;
 }
 
 .clear {
   position: relative;
-  background-color: rgb(63, 64, 84);
+  background-color: transparent;
   margin-top: 1em;
   width: 15em;
   height: 2.5em;
-  color: crimson;
+  color: #dc143c;
   text-align: center;
   border: 3px solid crimson;
   cursor: pointer;
@@ -105,7 +103,7 @@ body {
 
 .clear:after {
   content: "";
-  background: rgb(63, 64, 84);
+  background: #1f232c;
   display: block;
   position: absolute;
   padding-top: 300%;

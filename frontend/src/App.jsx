@@ -18,7 +18,7 @@ function App() {
 
       <div className="content">
         
-        <div className= "sub-container"> Draw Here (28x28 Image)
+        <div className= "sub-container"> Draw Digit Here
           <DrawingCanvas updatePrediction={updatePrediction}/>
         </div>  
           
