@@ -35,7 +35,7 @@ class MNIST_Neural_Network(nn.Module):
     
 mnist_model = MNIST_Neural_Network()
 
-mnist_model.load_state_dict(torch.load('./mnist_model.pth'))
+mnist_model.load_state_dict(torch.load('../models/mnist_model.pth'))
 mnist_model.eval()
 
 @app.route('/', methods=['POST'])
