@@ -38,7 +38,7 @@ mnist_model = MNIST_Neural_Network()
 mnist_model.load_state_dict(torch.load('../models/mnist_model.pth'))
 mnist_model.eval()
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET','POST'])
 def receive_image():
     if (request.method == 'POST'):
         data = request.get_json()
