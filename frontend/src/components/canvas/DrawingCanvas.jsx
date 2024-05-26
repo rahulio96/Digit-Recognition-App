@@ -2,6 +2,8 @@ import canvasCSS from "./DrawingCanvas.module.css";
 import "../../App.css";
 import { useRef, useEffect, useState } from "react";
 
+const URL = import.meta.env.VITE_SERVER;
+
 const DrawingCanvas = ({updatePrediction}) => {
   const width = 300;
   const height = 300;
@@ -83,11 +85,10 @@ const DrawingCanvas = ({updatePrediction}) => {
     const dataURL = canvas.toDataURL("image/png");
 
     // Send the image to Flask
-    const response = await fetch("http://localhost:5000/", {
+    const response = await fetch(URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://localhost:3000",
       },
       body: JSON.stringify({image: dataURL}),
     })
