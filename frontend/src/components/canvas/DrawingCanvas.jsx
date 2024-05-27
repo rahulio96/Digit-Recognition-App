@@ -87,9 +87,6 @@ const DrawingCanvas = ({updatePrediction}) => {
     // Send the image to Flask
     const response = await fetch(URL, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify({image: dataURL}),
     })
 
