@@ -89,7 +89,6 @@ const DrawingCanvas = ({updatePrediction}) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://drawdigits.netlify.app/",
       },
       body: JSON.stringify({image: dataURL}),
     })
