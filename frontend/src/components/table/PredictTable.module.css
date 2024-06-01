@@ -8,8 +8,9 @@
 
 td {
     border: 1px solid aliceblue;
-    padding: 0.328em;
+    padding: 0.3615em;
     transition: all 0.2s ease;
+    font-size: 1.3rem;
 }
 
 .header {

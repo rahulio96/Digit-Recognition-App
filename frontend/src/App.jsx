@@ -18,11 +18,11 @@ function App() {
 
       <div className="content">
         
-        <div className= "sub-container"> Draw Digit Here
+        <div className= "sub-container draw"> Draw Digit Here
           <DrawingCanvas updatePrediction={updatePrediction}/>
         </div>  
           
-        <div className= "sub-container">
+        <div className= "sub-container table">
           Neural Network Predictions
           <Table prediction={prediction}/>
         </div>

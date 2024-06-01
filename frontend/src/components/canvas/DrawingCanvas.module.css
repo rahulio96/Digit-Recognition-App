@@ -10,3 +10,68 @@ canvas {
     height: 100%;
     background-color: black;
 }
+
+.buttons {
+    display: grid;
+    justify-content: center;
+    margin: 0;
+}
+
+.button {
+    position: relative;
+    background-color: transparent;
+    margin-top: 1em;
+    width: 15em;
+    height: 2.5em;
+    color: var(--button-color);
+    text-align: center;
+    border: 3px solid var(--button-color);
+    cursor: pointer;
+    font-size: large;
+    font-family: "Nunito";
+    padding: 2.5%;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all .3s ease;
+    overflow: hidden;
+}
+  
+  .button:after {
+    content: "";
+    background: #1f232c;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px!important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s;
+}
+  
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+}
+  
+.button:hover {
+    background-color: var(--button-color);
+    color: var(--text-color-hover);
+}
+  
+.submit {
+    --button-color: #32c232;
+    --text-color-hover: aliceblue;
+}
+  
+.clear {
+    --button-color: crimson;
+    --text-color-hover: aliceblue;
+}
+  
+.github {
+    --button-color: aliceblue;
+    --text-color-hover: #1f232c;
+} 

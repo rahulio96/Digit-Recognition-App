@@ -99,6 +99,10 @@ const DrawingCanvas = ({updatePrediction}) => {
 
   };
 
+  const handleGitHub = () => {
+    window.open('https://github.com/rahulio96/Digit-Recognition-App', '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className={canvasCSS.container} id="canvas-image">
       <canvas
@@ -108,13 +112,12 @@ const DrawingCanvas = ({updatePrediction}) => {
         onMouseDown={startDrawing}
         onMouseMove={draw}
         onMouseUp={stopDrawing}
-        onMouseLeave={stopDrawing}>
+        onMouseLeave={stopDrawing} />
 
-        </canvas>
-
-    <div className="buttons">
-        <button className="submit" onClick={handleSubmit}>SUBMIT</button>
-        <button className="clear" onClick={clear}>CLEAR</button>
+    <div className={canvasCSS.buttons}>
+        <button className={`${canvasCSS.button} + ${canvasCSS.submit}`} onClick={handleSubmit}>SUBMIT</button>
+        <button className={`${canvasCSS.button} + ${canvasCSS.clear}`} onClick={clear}>CLEAR</button>
+        <button className={`${canvasCSS.button} + ${canvasCSS.github}`} onClick={handleGitHub}>GITHUB</button>
     </div>
 
     </div>
