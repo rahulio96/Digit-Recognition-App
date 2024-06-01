@@ -17,7 +17,7 @@ body {
 .title {
   font-size: 4em;
   color: aliceblue;
-  margin-top: 4vw;
+  margin-top: 3vw;
 }
 
 .sub-title {
@@ -28,7 +28,7 @@ body {
 
 .sub-container {
   display: inline-block;
-  margin: 5em;
+  margin: 5vh 5vw;
   color: aliceblue;
   font-size: large;
 }
@@ -38,102 +38,47 @@ body {
   margin: 5em;
 }
 
-.submit {
-  position: relative;
-  background-color: transparent;
-  margin-top: 1em;
-  width: 15em;
-  height: 2.5em;
-  color: rgb(50, 194, 50);
-  text-align: center;
-  border: 3px solid rgb(50, 194, 50);
-  cursor: pointer;
-  font-size: large;
-  font-family: "Nunito";
-  padding: 2.5%;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all .3s ease;
-  overflow: hidden;
-}
-
-.submit:after {
-  content: "";
-  background: #1f232c;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0.8s;
-}
-
-.submit:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s;
-}
-
-.submit:hover {
-  background-color: #32c232;
-  color: #f0f8ff;
-}
-
-.clear {
-  position: relative;
-  background-color: transparent;
-  margin-top: 1em;
-  width: 15em;
-  height: 2.5em;
-  color: #dc143c;
-  text-align: center;
-  border: 3px solid crimson;
-  cursor: pointer;
-  font-size: large;
-  font-family: "Nunito";
-  padding: 2.5%;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all .3s ease;
-  overflow: hidden;
-}
-
-.clear:after {
-  content: "";
-  background: #1f232c;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0.8s;
-}
-
-.clear:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s;
-}
-
-.clear:hover {
-  background-color: crimson;
-  color: aliceblue;
-}
-
 .content {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.buttons {
-  display: grid;
-  justify-content: center;
-  margin: 0;
+
+@media only screen and (max-width: 757px) {
+  .sub-container {
+    margin: 20px 10px;
+  }
 }
+
+@media only screen and (max-width: 645px) {
+  .sub-container {
+    margin: auto 10px;
+  }
+
+  .title {
+    font-size: 3em;
+  }
+
+  .sub-title {
+    font-size: 20px;
+  }
+
+  .draw {
+    margin: 10px;
+  }
+
+  .table {
+    margin-top: 250px;
+    margin-bottom: 50px;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .sub-container {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+}
+
+

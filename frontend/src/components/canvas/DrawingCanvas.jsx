@@ -26,9 +26,27 @@ const DrawingCanvas = ({updatePrediction}) => {
     context.fillRect(0, 0, canvas.width, canvas.height); // Draw background
   }, []);
 
-  // Start Drawing
-  const startDrawing = ({ nativeEvent }) => {
-    const { offsetX, offsetY } = nativeEvent;
+  // Get position based on if user is using a touch screen or mouse
+  const getEventPosition = (e) => {
+    if (e.nativeEvent instanceof MouseEvent) {
+      return { offsetX: e.nativeEvent.offsetX, offsetY: e.nativeEvent.offsetY };
+
+    } else if (e.nativeEvent instanceof TouchEvent) {
+      const rect = canvasRef.current.getBoundingClientRect();
+      const touch = e.nativeEvent.touches[0];
+      
+      // Get coordinates relative to canvas
+      return {
+        offsetX: touch.clientX - rect.left,
+        offsetY: touch.clientY - rect.top,
+      };
+    }
+
+    return { offsetX: 0, offsetY: 0 };
+  };
+
+  const startDrawing = (e) => {
+    const { offsetX, offsetY } = getEventPosition(e);
 
     const scaledOffsetX = (offsetX / canvasRef.current.clientWidth) * width;
     const scaledOffsetY = (offsetY / canvasRef.current.clientHeight) * height;
@@ -38,15 +56,13 @@ const DrawingCanvas = ({updatePrediction}) => {
     contextRef.current.beginPath();
     contextRef.current.moveTo(scaledOffsetX, scaledOffsetY);
     setIsDrawing(true);
-    nativeEvent.preventDefault();
   };
 
-  // Draw
-  const draw = ({ nativeEvent }) => {
+  const draw = (e) => {
     if (!isDrawing) {
       return;
     }
-    const { offsetX, offsetY } = nativeEvent;
+    const { offsetX, offsetY } = getEventPosition(e);
 
     const scaledOffsetX = (offsetX / canvasRef.current.clientWidth) * width;
     const scaledOffsetY = (offsetY / canvasRef.current.clientHeight) * height;
@@ -58,17 +74,13 @@ const DrawingCanvas = ({updatePrediction}) => {
     contextRef.current.stroke();
 
     setLastPos({ x: scaledOffsetX, y: scaledOffsetY });
-
-    nativeEvent.preventDefault();
   };
 
-  // Stop drawing
   const stopDrawing = () => {
     contextRef.current.closePath();
     setIsDrawing(false);
   };
 
-  // Clear the canvas
   const clear = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
@@ -94,9 +106,14 @@ const DrawingCanvas = ({updatePrediction}) => {
     })
 
     // Get the prediction from image from Flask
-    const responseData = await response.json()
-    updatePrediction(parseInt(responseData))
+    const responseData = await response.json();
+    updatePrediction(parseInt(responseData));
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 
+  };
+
+  const handleGitHub = () => {
+    window.open('https://github.com/rahulio96/Digit-Recognition-App', '_blank');
   };
 
   return (
@@ -105,16 +122,21 @@ const DrawingCanvas = ({updatePrediction}) => {
         ref={canvasRef}
         width={width}
         height={height}
+
         onMouseDown={startDrawing}
         onMouseMove={draw}
         onMouseUp={stopDrawing}
-        onMouseLeave={stopDrawing}>
+        onMouseLeave={stopDrawing}
+        
+        onTouchStart={startDrawing}
+        onTouchMove={draw}
+        onTouchEnd={stopDrawing}
+      />
 
-        </canvas>
-
-    <div className="buttons">
-        <button className="submit" onClick={handleSubmit}>SUBMIT</button>
-        <button className="clear" onClick={clear}>CLEAR</button>
+    <div className={canvasCSS.buttons}>
+        <button className={`${canvasCSS.button} + ${canvasCSS.submit}`} onClick={handleSubmit}>SUBMIT</button>
+        <button className={`${canvasCSS.button} + ${canvasCSS.clear}`} onClick={clear}>CLEAR</button>
+        <button className={`${canvasCSS.button} + ${canvasCSS.github}`} onClick={handleGitHub}>GITHUB</button>
     </div>
 
     </div>
